@@ -41,6 +41,6 @@ ENV PATH $PATH:/gate/gate_8.2-install/bin
 RUN echo "source /geant4/geant4.10.05-install/bin/geant4.sh" >> ~/.bashrc
 RUN echo "source /cern/root-install/bin/thisroot.sh" >> ~/.bashrc
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/usr/local/bin/docker-entrypoint.sh"]
 #CMD ["bash", "-lc", "./run_tests.sh"]
 
