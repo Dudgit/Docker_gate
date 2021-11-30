@@ -1,2 +1,3 @@
 # Docker simulation for Proton Computed Tomography
-Inside this repo I want to store the Docker scripts I need
+
+This research was supported by the Ministry of Innovation and Technology NRDI Office within the framework of the MILAB Artificial Intelligence National Laboratory Program
