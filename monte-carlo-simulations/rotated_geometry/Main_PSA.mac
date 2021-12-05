@@ -1,0 +1,69 @@
+#To visualise the detector, uncomment and run the macro with: Gate --qt Main_phantom.mac
+#/control/execute vis.mac
+
+/gate/geometry/setMaterialDatabase ../GateMaterials.db
+
+/control/execute Rotated_Geometry.mac
+
+/gate/systems/scanner_1/level1/attach TRACKER_Layer
+/gate/systems/scanner_2/level1/attach Layer
+/gate/systems/scanner_phantom/level1/attach PatientBox
+
+#attach volumes you want readout from
+/control/execute readout_bragg.mac
+
+#=================#
+# Physics	  #
+#=================#
+/gate/geometry/setIonisationPotential Water 78 eV
+/gate/physics/addPhysicsList QBBC_EMZ
+
+/gate/actor/addActor PhaseSpaceActor PSA_1
+/gate/actor/PSA_1/save {FILENAME}_Angle{angle}_PSA.root
+/gate/actor/PSA_1/attachTo psaVolume_1
+/gate/actor/PSA_1/enableEkine true
+/gate/actor/PSA_1/enableParticleName true
+/gate/actor/PSA_1/storeSecondaries true
+/gate/actor/PSA_1/enableProductionVolume true
+
+/gate/actor/addActor PhaseSpaceActor PSA_2
+/gate/actor/PSA_2/save {FILENAME}_Angle{angle}_PSA2.root
+/gate/actor/PSA_2/attachTo psaVolume_2
+/gate/actor/PSA_2/enableEkine true
+/gate/actor/PSA_2/enableParticleName true
+/gate/actor/PSA_2/storeSecondaries true
+/gate/actor/PSA_2/enableProductionVolume true
+
+/gate/run/initialize
+
+#=======================#
+# ADD PROTON BEAM	      #
+#=======================#
+
+/gate/source/addSource PBS PencilBeam
+/gate/source/PBS/setParticleType {PARTICLE_TYPE}
+/gate/source/PBS/setEnergy {BEAM_ENERGY} MeV
+/gate/source/PBS/setSigmaEnergy 0. MeV
+/gate/source/PBS/setPosition 0 0 -500 mm
+/gate/source/PBS/setSigmaX 2 mm
+/gate/source/PBS/setSigmaY 2 mm
+/gate/source/PBS/setSigmaTheta 2.5 mrad
+/gate/source/PBS/setSigmaPhi 2.5 mrad
+/gate/source/PBS/setRotationAxis 0 0 0
+/gate/source/PBS/setRotationAngle 0 rad
+/gate/source/PBS/setEllipseXThetaEmittance 3 mm*mrad
+/gate/source/PBS/setEllipseXThetaRotationNorm negative
+/gate/source/PBS/setEllipseYPhiEmittance 3 mm*mrad
+/gate/source/PBS/setEllipseYPhiRotationNorm negative
+
+/gate/output/root/enable
+/gate/output/root/setRootSinglesFlag 0
+/gate/output/root/setFileName {FILENAME}_Angle{angle}
+
+#===============#
+# START BEAMS	#
+#===============#
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {SEED}
+/gate/application/setTotalNumberOfPrimaries {PRIMARY_COUNT}
+/gate/application/start

@@ -1,0 +1,12 @@
+/vis/open OGLSQt
+/vis/drawVolume
+/vis/viewer/set/viewpointThetaPhi 100 15	
+/vis/viewer/flush
+/vis/viewer/zoom 0.8
+/vis/viewer/set/style wireframe
+/tracking/storeTrajectory 1
+/vis/scene/add/trajectories
+/vis/ogl/set/displayListLimit 1000000
+/vis/scene/endOfEventAction accumulate 200 
+/vis/scene/add/axes         0 0 0 10 cm
+/vis/viewer/set/auxiliaryEdge true
