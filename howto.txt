@@ -1,0 +1,7 @@
+docker build -t water_phantom_xy -f docker-image/Dockerfile .
+
+docker run -v /home/bdudas/Bence/D2/output:/output -d --rm -it water_phantom_xy -dt --simulation water_phantom --beam_energy 230 -wpm sphere -wpt 25 -bdx 0 -bdy 0 --primaries 10000
+
+root -b -q "~/Research/pCT/ztt-monte-carlo-func-test-master/scripts/root_csv_converter.cpp (\"output/water_phantom_10000Primaries_230MeV_28BX_0BY_200WPT_50WPX_40WPY_1645539133.root\")"
+
+
