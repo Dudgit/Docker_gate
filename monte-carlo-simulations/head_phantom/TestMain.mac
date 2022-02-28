@@ -1,0 +1,59 @@
+#To visualise the detector, uncomment and run the macro with: Gate --qt Main_phantom.mac
+#/control/execute vis.mac
+
+/gate/geometry/setMaterialDatabase ../GateMaterials.db
+
+/control/execute Module_phantom.mac
+
+/gate/systems/scanner_1/level1/attach TRACKER_Layer
+/gate/systems/scanner_2/level1/attach Layer
+
+#attach volumes you want readout from
+#/control/execute readout_full_final.mac
+/control/execute readout.mac
+
+#=================#
+# Physics	  #
+#=================#
+/gate/geometry/setIonisationPotential Water 78 eV
+/gate/physics/addPhysicsList QBBC_EMZ
+
+/gate/run/initialize
+
+#=======================#
+# ADD PROTON BEAM	      #
+#=======================#
+
+/gate/source/addSource PBS PencilBeam
+/gate/source/PBS/setParticleType {PARTICLE_TYPE}
+/gate/source/PBS/setEnergy {BEAM_ENERGY} MeV
+/gate/source/PBS/setSigmaEnergy 0. MeV
+/gate/source/PBS/setPosition 0 0 -500 mm
+/gate/source/PBS/setSigmaX 2 mm
+/gate/source/PBS/setSigmaY 2 mm
+/gate/source/PBS/setSigmaTheta 2.5 mrad
+/gate/source/PBS/setSigmaPhi 2.5 mrad
+/gate/source/PBS/setRotationAxis 0 0 0
+/gate/source/PBS/setRotationAngle 0 rad
+/gate/source/PBS/setEllipseXThetaEmittance 3 mm*mrad
+/gate/source/PBS/setEllipseXThetaRotationNorm negative
+/gate/source/PBS/setEllipseYPhiEmittance 3 mm*mrad
+/gate/source/PBS/setEllipseYPhiRotationNorm negative
+
+/gate/output/root/enable
+/gate/output/root/setRootSinglesFlag 0
+/gate/output/root/setFileName {FILENAME}
+
+#### New tree ROOT output for GATE v9.0
+#/gate/output/tree/enable
+#/gate/output/tree/addFileName ./Test_Head_Phantom_230MeV.root
+#/gate/output/tree/hits/enable
+#/gate/output/tree/hits/branches/time/disable
+
+#===============#
+# START BEAMS	#
+#===============#
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {SEED}
+/gate/application/setTotalNumberOfPrimaries {PRIMARY_COUNT}
+/gate/application/start

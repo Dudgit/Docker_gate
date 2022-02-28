@@ -1,0 +1,140 @@
+Sending build context to Docker daemon  1.201GB
+Step 1/21 : FROM opengatecollaboration/gate:8.2
+ ---> c59cd6d604a7
+Step 2/21 : USER root
+ ---> Using cache
+ ---> da09c2b852c8
+Step 3/21 : ENV MONTE_CARLO_SIMULATIONS /monte-carlo-simulations
+ ---> Using cache
+ ---> e6897f835e16
+Step 4/21 : ENV MONTE_CARLO_TESTS /tests/func
+ ---> Using cache
+ ---> 95f4e9d98327
+Step 5/21 : ENV SCRIPT_PATH /usr/local/bin
+ ---> Using cache
+ ---> 6e146c7d4c72
+Step 6/21 : ENV OUTPUT_PATH /output
+ ---> Using cache
+ ---> a420f30deafb
+Step 7/21 : RUN yum update -y && yum install -y libSM libX11 libXext libXpm libXft
+ ---> Using cache
+ ---> 0b2edbecee43
+Step 8/21 : RUN mkdir /output && chmod 777 /output
+ ---> Using cache
+ ---> c3d3db7e1bf4
+Step 9/21 : ARG username=physicist
+ ---> Using cache
+ ---> afb76f123b32
+Step 10/21 : RUN useradd --create-home --home-dir /home/${username} ${username}
+ ---> Using cache
+ ---> de5f5b022752
+Step 11/21 : ENV HOME /home/${username}
+ ---> Using cache
+ ---> 42b85fa4b311
+Step 12/21 : RUN chown -R ${username} /output
+ ---> Using cache
+ ---> ece985a99d21
+Step 13/21 : WORKDIR /home/${username}
+ ---> Using cache
+ ---> 596cf6361f72
+Step 14/21 : COPY --chown=${username} monte-carlo-simulations /monte-carlo-simulations
+ ---> Using cache
+ ---> 62ae2cfc15c1
+Step 15/21 : COPY --chown=${username} tests/ /tests
+ ---> Using cache
+ ---> 013702f3910d
+Step 16/21 : COPY --chown=${username} scripts/ /usr/local/bin/
+ ---> Using cache
+ ---> 49ac67e4ffb2
+Step 17/21 : RUN chown -R ${username} /home/${username}
+ ---> Using cache
+ ---> 59eac85e8289
+Step 18/21 : ENV PATH $PATH:/gate/gate_8.2-install/bin
+ ---> Using cache
+ ---> ddb1189c9518
+Step 19/21 : RUN echo "source /geant4/geant4.10.05-install/bin/geant4.sh" >> ~/.bashrc
+ ---> Using cache
+ ---> 61971db64cdf
+Step 20/21 : RUN echo "source /cern/root-install/bin/thisroot.sh" >> ~/.bashrc
+ ---> Using cache
+ ---> 1621ebf8770b
+Step 21/21 : ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ ---> Using cache
+ ---> 6b27490ca0b8
+Successfully built 6b27490ca0b8
+Successfully tagged water_phantom_xy:latest
+d871dfe51c09789642559878a1adb8c6ab523916e86d14286dfb891a3b97980a
+Sending build context to Docker daemon   1.27GB
+Step 1/21 : FROM opengatecollaboration/gate:8.2
+ ---> c59cd6d604a7
+Step 2/21 : USER root
+ ---> Using cache
+ ---> da09c2b852c8
+Step 3/21 : ENV MONTE_CARLO_SIMULATIONS /monte-carlo-simulations
+ ---> Using cache
+ ---> e6897f835e16
+Step 4/21 : ENV MONTE_CARLO_TESTS /tests/func
+ ---> Using cache
+ ---> 95f4e9d98327
+Step 5/21 : ENV SCRIPT_PATH /usr/local/bin
+ ---> Using cache
+ ---> 6e146c7d4c72
+Step 6/21 : ENV OUTPUT_PATH /output
+ ---> Using cache
+ ---> a420f30deafb
+Step 7/21 : RUN yum update -y && yum install -y libSM libX11 libXext libXpm libXft
+ ---> Using cache
+ ---> 0b2edbecee43
+Step 8/21 : RUN mkdir /output && chmod 777 /output
+ ---> Using cache
+ ---> c3d3db7e1bf4
+Step 9/21 : ARG username=physicist
+ ---> Using cache
+ ---> afb76f123b32
+Step 10/21 : RUN useradd --create-home --home-dir /home/${username} ${username}
+ ---> Using cache
+ ---> de5f5b022752
+Step 11/21 : ENV HOME /home/${username}
+ ---> Using cache
+ ---> 42b85fa4b311
+Step 12/21 : RUN chown -R ${username} /output
+ ---> Using cache
+ ---> ece985a99d21
+Step 13/21 : WORKDIR /home/${username}
+ ---> Using cache
+ ---> 596cf6361f72
+Step 14/21 : COPY --chown=${username} monte-carlo-simulations /monte-carlo-simulations
+ ---> Using cache
+ ---> 62ae2cfc15c1
+Step 15/21 : COPY --chown=${username} tests/ /tests
+ ---> Using cache
+ ---> 013702f3910d
+Step 16/21 : COPY --chown=${username} scripts/ /usr/local/bin/
+ ---> Using cache
+ ---> 49ac67e4ffb2
+Step 17/21 : RUN chown -R ${username} /home/${username}
+ ---> Using cache
+ ---> 59eac85e8289
+Step 18/21 : ENV PATH $PATH:/gate/gate_8.2-install/bin
+ ---> Using cache
+ ---> ddb1189c9518
+Step 19/21 : RUN echo "source /geant4/geant4.10.05-install/bin/geant4.sh" >> ~/.bashrc
+ ---> Using cache
+ ---> 61971db64cdf
+Step 20/21 : RUN echo "source /cern/root-install/bin/thisroot.sh" >> ~/.bashrc
+ ---> Using cache
+ ---> 1621ebf8770b
+Step 21/21 : ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ ---> Using cache
+ ---> 6b27490ca0b8
+Successfully built 6b27490ca0b8
+Successfully tagged water_phantom_xy:latest
+a3fe303bd1c5bc86c89c35cb5d0eace72733db5982d489b1d33fd72a895de043
+c44e91f6b7832819f879303fbcf9ea69a0ea1ba18f987ec65589b2630bd420ff
+d4dfd9bbb9b1f971ee1e2678ac799704dce2f5d4bfe26c92fca6d6be44057c90
+36a8fbc1b5a6633fa10db3f47321bbe5a92abf86e9962b1a2e217cfdd4758159
+919fdbfaccfa4dabde474ed1525b4aa46416662cad59ab4da263008853774d8a
+2220f1ac15e21995a969be70fe9819f457d4ee295d3f523444ffb1d24c41b472
+9d731a81aa9e493950fbc52b8c6ecff3fc0004e9618b9eaa153ac8e004a04894
+27fea9245f0da2296d94e6ff77e26eb411281ce71cf5c1fb26b497ad7778c6e1
+9af8ce2662b27a6a75d86e330ea1ebe7b28e69852126d13665594aa0cb610e5e

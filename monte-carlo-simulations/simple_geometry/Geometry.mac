@@ -1,0 +1,58 @@
+#World
+/gate/world/geometry/setXLength 3500.0 mm
+/gate/world/geometry/setYLength 3500.0 mm
+/gate/world/geometry/setZLength 3500.0 mm
+/gate/world/placement/setTranslation 0 0 0 mm
+/gate/world/vis/setVisible false
+
+/gate/world/daughters/name psaVolume_1
+/gate/world/daughters/insert box
+/gate/psaVolume_1/geometry/setXLength 270. mm
+/gate/psaVolume_1/geometry/setYLength 164. mm
+/gate/psaVolume_1/geometry/setZLength 10. um
+/gate/psaVolume_1/placement/setTranslation 0 0 224. mm
+/gate/psaVolume_1/setMaterial Air
+/gate/psaVolume_1/vis/setVisible false
+/gate/psaVolume_1/vis/setColor red
+
+/gate/world/daughters/name psaVolume_2
+/gate/world/daughters/insert box
+/gate/psaVolume_2/geometry/setXLength 270. mm
+/gate/psaVolume_2/geometry/setYLength 164. mm
+/gate/psaVolume_2/geometry/setZLength 10. um
+/gate/psaVolume_2/placement/setTranslation 0 0 270.0 mm
+/gate/psaVolume_2/setMaterial Air
+/gate/psaVolume_2/vis/setVisible false
+/gate/psaVolume_2/vis/setColor red
+
+
+
+/gate/world/daughters/name Conversion_Layer
+/gate/world/daughters/insert box
+/gate/Conversion_Layer/geometry/setXLength 270.0 mm
+/gate/Conversion_Layer/geometry/setYLength 164.0 mm
+/gate/Conversion_Layer/geometry/setZLength {thickness} mm
+/gate/Conversion_Layer/placement/setTranslation 0 0 245.0 mm
+/gate/Conversion_Layer/setMaterial Tungsten
+/gate/Conversion_Layer/vis/setVisible true
+/gate/Conversion_Layer/vis/setColor red
+
+
+/gate/world/daughters/name scanner
+/gate/world/daughters/systemType scanner
+/gate/world/daughters/insert box
+/gate/scanner/geometry/setXLength 270.0 mm
+/gate/scanner/geometry/setYLength 164.0 mm
+/gate/scanner/geometry/setZLength 10 mm
+/gate/scanner/placement/setTranslation 0 0 280.0 mm
+/gate/scanner/vis/setVisible false
+/gate/scanner/vis/setColor red
+
+
+/gate/scanner/daughters/name ALPIDEEpi
+/gate/scanner/daughters/insert box
+/gate/ALPIDEEpi/geometry/setXLength 270.0 mm
+/gate/ALPIDEEpi/geometry/setYLength 164.0 mm
+/gate/ALPIDEEpi/geometry/setZLength 10.0 mm
+/gate/ALPIDEEpi/placement/setTranslation 0 0 5.0 mm
+/gate/ALPIDEEpi/setMaterial Silicon

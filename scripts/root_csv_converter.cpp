@@ -101,9 +101,9 @@ void CSV_Writer::write_file(TTree* tree) {
 			for (Int_t l = 0; l < len; l++) {
 
 				if (leaf->IsA() == TLeafC::Class()) {
-					file << (char*)leaf->GetValuePointer();
+					file << std::setprecision(64) << (char*)leaf->GetValuePointer();
 				} else {
-					file << leaf->GetValue(l);
+					file << std::setprecision(64) << leaf->GetValue(l);
 				}
 				if (l == (len - 1)) {
 					if(len > 1) {

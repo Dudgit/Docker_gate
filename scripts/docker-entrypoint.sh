@@ -26,9 +26,14 @@ RUN_HELP=false
 # Default amount of primaries
 PRIMARY_COUNT=1000
 # Default thickness of the water phantom specified in mm
+PHANTOM_MODULE=Module_phantom_box.mac
 WATER_PHANTOM_THICKNESS=200.0
+WATER_PHANTOM_X=50.0
+WATER_PHANTOM_Y=40.0
 # Default energy of the beam in MeV
 BEAM_ENERGY=230
+BEAM_DELTA_X=0.0
+BEAM_DELTA_Y=0.0
 # Default beam type
 PARTICLE_TYPE="proton"
 # Set a user defined seed
@@ -54,8 +59,25 @@ case $key in
     shift
     shift
     ;;
+    -wpm|--water-phantom-module)
+    if [ "$2" = "sphere" ]; then
+      PHANTOM_MODULE=Module_phantom_sphere.mac
+    fi
+    shift
+    shift
+    ;;
     -wpt|--water-phantom-thickness)
     WATER_PHANTOM_THICKNESS="$2"
+    shift
+    shift
+    ;;
+    -wpx|--water-phantom-deltax)
+    WATER_PHANTOM_X="$2"
+    shift
+    shift
+    ;;
+    -wpy|--water-phantom-deltay)
+    WATER_PHANTOM_Y="$2"
     shift
     shift
     ;;
@@ -66,6 +88,16 @@ case $key in
     ;;
     -e|--beam-energy)
     BEAM_ENERGY="$2"
+    shift
+    shift
+    ;;
+    -bdx|--beam-deltax)
+    BEAM_DELTA_X="$2"
+    shift
+    shift
+    ;;
+    -bdy|--beam-deltay)
+    BEAM_DELTA_Y="$2"
     shift
     shift
     ;;
